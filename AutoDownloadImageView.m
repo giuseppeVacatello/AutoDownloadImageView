@@ -120,11 +120,20 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
 {
     /**
+     * Controllo se l'immagine scaricata non sia null (può capitare in caso di problemi lato server)
 	 * Imposto la proprietà image con l'immagine scaricata da internet
 	 * questo spesso è sufficiente affinché venga visualizzata
 	 * l'immagine corretta, se così non fosse il delegate dovrà invocare un setNeedDisplay
-	 */
-	self.image = [UIImage imageWithData:receivedData];
+	 */	  
+	 if ([UIImage imageWithData:receivedData] == nil){
+        
+	  }
+    else
+    {
+        self.image = [UIImage imageWithData:receivedData];
+    }
+
+
 	
 	/**
 	 * Salvo l'immagine nel filesystem se è stato specificato.
